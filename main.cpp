@@ -3,9 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <filesystem>
 #include <cstring>
 #include <string.h>
+
 void printAll();
 void saveAll();
 void undo();
@@ -203,24 +203,33 @@ int main()
 }
 bool getLogs()
 {
-	//Get the files in alphabetical order aka sorted by time
-	const std::string path = "logs/";
-	bool found = false;
-	for (auto &file : std::filesystem::directory_iterator(path))
+	try
 	{
-		if(is_regular_file(file))
+		//Get the files in alphabetical order aka sorted by time
+		const std::string path = "logs/";
+		bool found = false;
+		for (auto &file : std::filesystem::directory_iterator(path))
 		{
-			const size_t dot = file.path().string().find_last_of('.');
-			std::string fileExt = file.path().string().substr(dot, file.path().string().size() - dot);
-			if (fileExt == ".log")
+			if(std::filesystem::is_regular_file(file))
 			{
-				fileList.push_back(file.path().string());
-				std::cout << " >" << file.path().string() << "\n";
-				found = true;
+				const size_t dot = file.path().string().find_last_of('.');
+				std::string fileExt = file.path().string().substr(dot, file.path().string().size() - dot);
+				if (fileExt == ".log")
+				{
+					fileList.push_back(file.path().string());
+					std::cout << " >" << file.path().string() << "\n";
+					found = true;
+				}
 			}
 		}
+		return found;
 	}
-	return found;
+	catch (...)
+	{
+		//mkdir("logs/");
+		//return getLogs();
+		exit(0);
+	}
 }
 bool readLogs()
 {
@@ -315,7 +324,8 @@ void saveAll()
 std::string help()
 {
 	std::string helpStr;
-	helpStr += "LogReader "; helpStr += version; helpStr += "                                 .oO List of commands Oo.\n";
+	helpStr += "LogReader "; helpStr += version;
+	helpStr += "                                 .oO List of commands Oo.\n";
 	helpStr += "--------------------------------------------------------------------------------------------------------------------\n";
 	helpStr += "* quit:                                         Quit Log Reader\n";
 	helpStr += "* printAll:                                     Prints all log contents.\n";
