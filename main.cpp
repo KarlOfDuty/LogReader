@@ -215,7 +215,7 @@ bool readLogs()
         file.open(fileName);
         do
         {
-            logContents.back().emplace_back("HELLO");
+            logContents.back().emplace_back("");
         }
         while (std::getline(file, logContents.back().back()));
         file.close();
