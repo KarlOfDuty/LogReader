@@ -1,9 +1,7 @@
 #pragma once
 
 #include <cstring>
-
-static std::vector<std::string> fileList;
-static std::vector<std::vector<std::string>> logContents;
+#include "log_data.hpp"
 
 static bool isProtectedLine(const std::string& line)
 {
@@ -12,7 +10,7 @@ static bool isProtectedLine(const std::string& line)
 
 static size_t subtractTitles(const size_t rowsWithTitles)
 {
-	return rowsWithTitles > fileList.size() ? rowsWithTitles - fileList.size() : 0;
+	return rowsWithTitles > LogData::fileList.size() ? rowsWithTitles - LogData::fileList.size() : 0;
 }
 
 template <class T>

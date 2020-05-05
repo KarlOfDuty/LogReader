@@ -3,9 +3,10 @@
 LogReader::LogReader()
 {
 	std::cout << "Fetching logs...\n";
-	fileList = DirectoryReader::getFilePaths("logs/");
 
-	if (fileList.empty())
+	LogData::fileList = DirectoryReader::getFilePaths("logs/");
+
+	if (LogData::fileList.empty())
 	{
 		std::cout << "No logs present in ./logs. Aborting...\n";
 		return;
@@ -14,7 +15,9 @@ LogReader::LogReader()
 	std::cout << "Done.\n";
 	std::cout << "Reading logs...\n";
 	readLogs();
-	std::cout << "Done. Read " << logContents.back().size() << " rows.\n";
+	std::cout << LogData::logContents.size() << "\n";
+	std::cout << LogData::logContents.back().size() << "\n";
+	std::cout << "Done. Read " << LogData::logContents.back().size() << " rows.\n";
 	while (true)
 	{
 		std::string input = {};
@@ -29,7 +32,7 @@ LogReader::LogReader()
 		switch (CommandParser::parseKeyword(extractFrontOrDefault(commandArguments)))
 		{
 			case Argument::PRINT:
-				for (std::string& row : logContents.back())
+				for (std::string& row : LogData::logContents.back())
 				{
 					std::cout << row << "\n";
 				}
@@ -58,26 +61,26 @@ LogReader::LogReader()
 void LogReader::readLogs()
 {
 	std::fstream file = std::fstream();
-	logContents.emplace_back(std::vector<std::string>());
-	for (std::string& fileName : fileList)
+	LogData::logContents.emplace_back(std::vector<std::string>());
+	for (std::string& fileName : LogData::fileList)
 	{
 		std::cout << " Reading " << fileName << "...\n";
-		logContents.back().emplace_back("-- File: " + fileName + " --");
+		LogData::logContents.back().emplace_back("-- File: " + fileName + " --");
 		file.open(fileName);
 		do
 		{
-			logContents.back().emplace_back("");
+			LogData::logContents.back().emplace_back("");
 		}
-		while (std::getline(file, logContents.back().back()));
+		while (std::getline(file, LogData::logContents.back().back()));
 		file.close();
 	}
 }
 
 void LogReader::undo()
 {
-	if (logContents.size() > 1)
+	if (LogData::logContents.size() > 1)
 	{
-		logContents.pop_back();
+		LogData::logContents.pop_back();
 		std::cout << "Last action undone.\n";
 	}
 	else
@@ -90,7 +93,7 @@ void LogReader::saveToFile()
 {
 	std::cout << "Saving log file...\n";
 	std::string outString;
-	for (std::string& row : logContents.back())
+	for (std::string& row : LogData::logContents.back())
 	{
 		outString.append(row);
 		outString.append("\n");

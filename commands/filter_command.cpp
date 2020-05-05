@@ -58,8 +58,8 @@ void FilterCommand::filterPhrase(const std::string& phrase)
 	}
 
 	unsigned long long debugCounter = 0;
-	std::cout << logContents.size();
-	for (std::string& row : logContents.back())
+	std::cout << LogData::logContents.size();
+	for (std::string& row : LogData::logContents.back())
 	{
 		if (row.find(phrase) != std::string::npos || isProtectedLine(row))
 		{
@@ -72,7 +72,7 @@ void FilterCommand::filterPhrase(const std::string& phrase)
 		}
 	}
 	std::cout << "Done. " << debugCounter << " rows searched, " << subtractTitles(matchingLines.size()) << " matches found.\n";
-	logContents.push_back(matchingLines);
+	LogData::logContents.push_back(matchingLines);
 }
 
 void FilterCommand::filterLargerValue(const std::string& phrase)
@@ -82,7 +82,7 @@ void FilterCommand::filterLargerValue(const std::string& phrase)
 	float inputValue = std::strtof(phrase.c_str(), nullptr);
 
 	int debugCounter = 0;
-	for (std::string& row : logContents.back())
+	for (std::string& row : LogData::logContents.back())
 	{
 		std::stringstream ss = std::stringstream();
 		std::string word = "";
@@ -108,7 +108,7 @@ void FilterCommand::filterLargerValue(const std::string& phrase)
 		}
 	}
 	std::cout << "Filtered to only values higher than or equal to " << inputValue << ".\n";
-	logContents.push_back(matchingLines);
+	LogData::logContents.push_back(matchingLines);
 }
 
 void FilterCommand::filterSmallerValue(const std::string& phrase)
@@ -118,7 +118,7 @@ void FilterCommand::filterSmallerValue(const std::string& phrase)
 	float inputValue = std::strtof(phrase.c_str(), nullptr);
 
 	int debugCounter = 0;
-	for (std::string& row : logContents.back())
+	for (std::string& row : LogData::logContents.back())
 	{
 		std::stringstream ss = std::stringstream();
 
@@ -145,5 +145,5 @@ void FilterCommand::filterSmallerValue(const std::string& phrase)
 		}
 	}
 	std::cout << "Filtered to only values lower than or equal to " << inputValue << ".\n";
-	logContents.push_back(matchingLines);
+	LogData::logContents.push_back(matchingLines);
 }
