@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstring>
+
 static std::vector<std::string> fileList;
 static std::vector<std::vector<std::string>> logContents;
 
