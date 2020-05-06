@@ -93,7 +93,6 @@ void FilterCommand::filterLargerValue(const std::string& phrase)
 			ss >> word;
 			if (Utils::isNumber(word) && std::strtof(word.c_str(), nullptr) >= inputValue)
 			{
-				std::cout << word << "|" << std::strtof(word.c_str(), nullptr) << "\n";
 				found = true;
 			}
 		}
