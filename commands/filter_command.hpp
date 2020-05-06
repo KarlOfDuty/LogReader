@@ -4,7 +4,7 @@
 #include "base_command.hpp"
 #include "command_parser.hpp"
 #include "../utils.hpp"
-#include "../log_data.hpp"
+#include "../filesystem.hpp"
 
 class FilterCommand : public BaseCommand
 {

@@ -6,9 +6,9 @@
 #include <vector>
 #include <cstring>
 #include <string>
-#include "directory_reader.hpp"
 #include "commands/filter_command.hpp"
 #include "commands/command_parser.hpp"
+#include "filesystem.hpp"
 
 class LogReader
 {
@@ -34,5 +34,4 @@ private:
 
 	static void saveToFile();
 	static void undo();
-	static void readLogs();
 };

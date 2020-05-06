@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstring>
-#include "log_data.hpp"
+#include "filesystem.hpp"
 
 class Utils
 {
@@ -20,7 +20,7 @@ public:
 
 	static size_t subtractTitles(const size_t rowsWithTitles)
 	{
-		return rowsWithTitles > LogData::fileList.size() ? rowsWithTitles - LogData::fileList.size() : 0;
+		return rowsWithTitles > Filesystem::fileList.size() ? rowsWithTitles - Filesystem::fileList.size() : 0;
 	}
 
 	template <class T>

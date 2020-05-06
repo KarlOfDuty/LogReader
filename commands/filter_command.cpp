@@ -1,5 +1,6 @@
 #include "filter_command.hpp"
 
+
 void FilterCommand::execute(std::vector<std::string> commandArguments)
 {
 	switch (CommandParser::parseKeyword(Utils::extractFrontOrDefault(commandArguments)))
@@ -35,6 +36,7 @@ void FilterCommand::execute(std::vector<std::string> commandArguments)
 					filterSmallerValue(Utils::extractFrontOrDefault(commandArguments));
 					break;
 				default:
+					// TODO: This should attempt to find equal value
 					std::cout << "Invalid sub-command. Use 'help' for a full list of commands.\n";
 					break;
 			}
@@ -58,8 +60,8 @@ void FilterCommand::filterPhrase(const std::string& phrase)
 	}
 
 	unsigned long long debugCounter = 0;
-	std::cout << LogData::logContents.size();
-	for (std::string& row : LogData::logContents.back())
+	std::cout << Filesystem::logContents.size();
+	for (std::string& row : Filesystem::logContents.back())
 	{
 		if (row.find(phrase) != std::string::npos || Utils::isProtectedLine(row))
 		{
@@ -72,7 +74,7 @@ void FilterCommand::filterPhrase(const std::string& phrase)
 		}
 	}
 	std::cout << "Done. " << debugCounter << " rows searched, " << Utils::subtractTitles(matchingLines.size()) << " matches found.\n";
-	LogData::logContents.push_back(matchingLines);
+	Filesystem::logContents.push_back(matchingLines);
 }
 
 void FilterCommand::filterLargerValue(const std::string& phrase)
@@ -82,7 +84,7 @@ void FilterCommand::filterLargerValue(const std::string& phrase)
 	float inputValue = std::strtof(phrase.c_str(), nullptr);
 
 	int debugCounter = 0;
-	for (std::string& row : LogData::logContents.back())
+	for (std::string& row : Filesystem::logContents.back())
 	{
 		std::stringstream ss = std::stringstream();
 		std::string word = "";
@@ -110,7 +112,7 @@ void FilterCommand::filterLargerValue(const std::string& phrase)
 	}
 	std::cout << "Filtered to only values higher than or equal to " << inputValue << ".\n";
 	std::cout << debugCounter << " rows searched, " << Utils::subtractTitles(matchingLines.size()) << " matches found.\n";
-	LogData::logContents.push_back(matchingLines);
+	Filesystem::logContents.push_back(matchingLines);
 }
 
 void FilterCommand::filterSmallerValue(const std::string& phrase)
@@ -120,7 +122,7 @@ void FilterCommand::filterSmallerValue(const std::string& phrase)
 	float inputValue = std::strtof(phrase.c_str(), nullptr);
 
 	int debugCounter = 0;
-	for (std::string& row : LogData::logContents.back())
+	for (std::string& row : Filesystem::logContents.back())
 	{
 		std::stringstream ss = std::stringstream();
 
@@ -148,5 +150,5 @@ void FilterCommand::filterSmallerValue(const std::string& phrase)
 	}
 	std::cout << "Filtered to only values lower than or equal to " << inputValue << ".\n";
 	std::cout << debugCounter << " rows searched, " << Utils::subtractTitles(matchingLines.size()) << " matches found.\n";
-	LogData::logContents.push_back(matchingLines);
+	Filesystem::logContents.push_back(matchingLines);
 }
