@@ -11,7 +11,7 @@ class FilterCommand : public BaseCommand
 public:
 	void execute(std::vector<std::string> commandArguments) override;
 private:
-	void filterPhrase(const std::string& phrase);
-	void filterLargerValue(const std::string& phrase);
-	void filterSmallerValue(const std::string& phrase);
+	static void filterPhrase(const std::string& phrase);
+	static void filterLargerValue(const std::string& phrase);
+	static void filterSmallerValue(const std::string& phrase);
 };
