@@ -4,11 +4,8 @@ LogReader::LogReader()
 {
 	std::cout << "Fetching logs...\n";
 
-	Filesystem::initialize("logs/");
-
-	if (Filesystem::fileList.empty())
+	if(!Filesystem::initialize("logs/"))
 	{
-		std::cout << "No logs present in ./logs. Aborting...\n";
 		return;
 	}
 

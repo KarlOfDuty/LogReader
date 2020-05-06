@@ -1,6 +1,4 @@
-#include "Filesystem.hpp"
-
-#ifdef _WIN32 // Windows only
+#include "filesystem.hpp"
 
 bool Filesystem::initialize(const std::string& path)
 {
@@ -17,6 +15,8 @@ bool Filesystem::initialize(const std::string& path)
 	readLogs();
 	return true;
 }
+
+#ifdef _WIN32 // Windows only
 
 void Filesystem::readFilePaths(const std::string& path)
 {
@@ -52,7 +52,7 @@ void Filesystem::readFilePaths(const std::string& path)
 
     if (directory == nullptr)
     {
-        return std::vector<std::string>();
+        return;
     }
 
     std::vector<std::string> files;
