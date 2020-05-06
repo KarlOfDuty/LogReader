@@ -39,18 +39,15 @@
             ]
         },
         {
-            "name": "WSL-GCC-Debug",
-            "generator": "Unix Makefiles",
-            "configurationType": "Debug",
+            "name": "Win64-Release",
+            "generator": "Ninja",
+            "configurationType": "RelWithDebInfo",
             "buildRoot": "${projectDir}\\out\\build\\${name}",
             "installRoot": "${projectDir}\\out\\install\\${name}",
-            "cmakeExecutable": "/usr/bin/cmake",
             "cmakeCommandArgs": "",
-            "buildCommandArgs": "",
+            "buildCommandArgs": "-v",
             "ctestCommandArgs": "",
-            "inheritEnvironments": [ "linux_x64" ],
-            "wslPath": "${defaultWSLPath}",
-            "addressSanitizerRuntimeFlags": "detect_leaks=0",
+            "inheritEnvironments": [ "msvc_x64_x64" ],
             "variables": []
         }
     ]
