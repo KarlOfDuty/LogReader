@@ -22,8 +22,8 @@ public:
 		"* print:                             Prints all log contents.\n" +
 		"* save:                              Saves all log contents to output.log.\n" +
 		"* filter phrase <phrase>:            Filters out lines from the logs that do not contain the phrase.\n" +
-		"* filter value moreThan <number>:    Filters out lines from the logs that do not contain a number higher or equal to the one entered.\n" +
-		"* filter value lessThan <number>:    Filters out lines from the logs that do not contain a number lower or equal than the one entered.\n" +
+		"* filter value larger <number>:      Filters out lines from the logs that do not contain a number larger or equal to the one entered.\n" +
+		"* filter value smaller <number>:     Filters out lines from the logs that do not contain a number smaller or equal than the one entered.\n" +
 		"* undo:                              Undoes the latest action.\n" +
 		"* help:                              Prints this help screen\n"
 	};
