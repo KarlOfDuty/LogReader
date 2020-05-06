@@ -29,7 +29,7 @@ LogReader::LogReader()
 
 		if (commandArguments.empty()) continue;
 
-		switch (CommandParser::parseKeyword(extractFrontOrDefault(commandArguments)))
+		switch (CommandParser::parseKeyword(Utils::extractFrontOrDefault(commandArguments)))
 		{
 			case Argument::PRINT:
 				for (std::string& row : LogData::logContents.back())

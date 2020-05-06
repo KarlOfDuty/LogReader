@@ -2,7 +2,7 @@
 
 #ifdef _WIN32 // Windows only
 
-std::vector<std::string> DirectoryReader::getFilePaths(const std::string path)
+std::vector<std::string> DirectoryReader::getFilePaths(const std::string& path)
 {
     std::vector<std::string> fileList = {};
 

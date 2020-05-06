@@ -12,6 +12,6 @@
 
 class DirectoryReader {
 public:
-    static std::vector<std::string> getFilePaths(const std::string path);
+    static std::vector<std::string> getFilePaths(const std::string& path);
 };
 
