@@ -30,7 +30,7 @@ std::vector<std::string> DirectoryReader::getFilePaths(const std::string& path)
 
 #else // Unix only
 
-std::vector<std::string> DirectoryReader::getFilePaths(const std::string path) 
+std::vector<std::string> DirectoryReader::getFilePaths(const std::string& path) 
 {
     DIR* directory = opendir(path.c_str());
 
