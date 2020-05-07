@@ -13,7 +13,7 @@
 class LogReader
 {
 public:
-	const std::string VERSION = "0.1.0";
+	const std::string VERSION = "0.1.1";
 	const std::string HELP_MESSAGE =
 	{
 		"LogReader " + VERSION + "                                 .oO List of commands Oo.\n" +
