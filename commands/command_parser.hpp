@@ -52,6 +52,7 @@ public:
 		if (argument == "smaller") return Argument::SMALLER;
 		if (argument == "help") return Argument::HELP;
 		if (argument == "quit") return Argument::QUIT;
+		if (argument == "exit") return Argument::QUIT;
 		return Argument::USER_INPUT;
 	}
 };
