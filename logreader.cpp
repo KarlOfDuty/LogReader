@@ -9,8 +9,6 @@ LogReader::LogReader()
 		return;
 	}
 
-	std::cout << Filesystem::logContents.size() << "\n";
-	std::cout << Filesystem::logContents.back().size() << "\n";
 	std::cout << "Done. Read " << Filesystem::logContents.back().size() << " rows.\n";
 	while (true)
 	{
