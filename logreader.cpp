@@ -9,6 +9,15 @@ LogReader::LogReader()
 		return;
 	}
 
+#ifndef _WIN32
+	system("clear");
+#else
+	system("CLS");
+#endif
+
+	std::cout << "|###########################################################|\n" 
+	          << "                    LogReader " << VERSION << "\n"
+			  << "|###########################################################|\n";
 	std::cout << "Done. Read " << Filesystem::logContents.back().size() << " rows.\n";
 	while (true)
 	{
