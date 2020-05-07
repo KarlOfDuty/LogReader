@@ -10,6 +10,8 @@ bool Filesystem::initialize(const std::string& path)
 		return false;
 	}
 
+	std::sort(fileList.begin(), fileList.end());
+
 	std::cout << "Done.\n";
 	std::cout << "Reading logs...\n";
 	readLogs();
