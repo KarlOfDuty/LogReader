@@ -4,7 +4,7 @@ LogReader::LogReader()
 {
 	std::cout << "Fetching logs...\n";
 
-	if(!Filesystem::initialize("logs/"))
+	if(!Filesystem::initialize())
 	{
 		return;
 	}
@@ -39,7 +39,7 @@ LogReader::LogReader()
 				}
 				break;
 			case Argument::SAVE:
-				saveToFile();
+				saveCommand.execute(commandArguments);
 				break;
 			case Argument::UNDO:
 				undo();
@@ -69,28 +69,5 @@ void LogReader::undo()
 	else
 	{
 		std::cout << "No actions left to undo.\n";
-	}
-}
-
-void LogReader::saveToFile()
-{
-	std::cout << "Saving log file...\n";
-	std::string outString;
-	for (std::string& row : Filesystem::logContents.back())
-	{
-		outString.append(row);
-		outString.append("\n");
-	}
-
-	std::ofstream fs = std::ofstream("output.log");
-	if (fs.is_open())
-	{
-		fs << outString;
-		fs.close();
-		std::cout << "Log saved as 'output.log'.\n";
-	}
-	else
-	{
-		std::cout << "Error: Could not save 'output.log'.\n";
 	}
 }

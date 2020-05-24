@@ -6,11 +6,16 @@
 class Utils
 {
 public:
-	static bool isNumber(const std::string& s)
+	static bool isNumber(const std::string& str)
 	{
-		std::string::const_iterator it = s.begin();
-		while (it != s.end() && std::isdigit(*it)) ++it;
-		return !s.empty() && it == s.end();
+		std::string::const_iterator it = str.begin();
+		while (it != str.end() && std::isdigit(*it)) ++it;
+		return !str.empty() && it == str.end();
+	}
+
+	static bool isEmptyOrWhitespace(const std::string& str)
+	{
+		return str.find_first_not_of(' ') == std::string::npos;
 	}
 
 	static bool isProtectedLine(const std::string& line)
